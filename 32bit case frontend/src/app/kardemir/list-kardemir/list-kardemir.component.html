@@ -1,0 +1,135 @@
+<div class="search-div">
+  <button mat-raised-button [disabled]="this.isLoggedOut" (click)="onCreate()" >
+    <mat-icon>add</mat-icon>Create
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input
+      matInput
+      [(ngModel)]="searchKey"
+      placeholder="Search"
+      autocomplete="off"
+      (keyup)="applyFilter()"
+    />
+    <button
+      mat-button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      *ngIf="searchKey"
+      (click)="onSearchClear()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="listData" matSort>
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Active</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.active }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kardemir1">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Kardemir</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.kardemir1 }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kardemir2">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Kardemir 2</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.kardemir2 }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kardemir3">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Kardemir 3</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.kardemir3 }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="customerId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Customer Id</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.customerId }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="dop">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Dop</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.dop }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="heatNo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Heat No</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.heatNo }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="labelNo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Label No</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.labelNo }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="length">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Length</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.length }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="product">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Product</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.product }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="quality">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Quality</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.quality }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Quantity</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.quantity }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Weight</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.weight }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdUser">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Created User</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.createdUser }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="updatedUser">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Updated User</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.updatedUser }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button style="margin-left: 15px" [disabled]="this.isLoggedOut" (click)="onEdit(row)">
+          <mat-icon>launch</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" [disabled]="this.isLoggedOut" (click) = "onDelete(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button></mat-cell
+      >
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSize]="10"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

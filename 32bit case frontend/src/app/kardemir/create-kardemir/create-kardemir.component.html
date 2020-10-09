@@ -1,0 +1,104 @@
+<mat-toolbar>
+  <span>{{kardemirService.createKardemirForm.controls['id'].value?"Modify Kardemir" : "New Kardemir"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button
+    class="btn-dialog-close"
+    mat-stroked-button
+    (click)="onClose()"
+    tabIndex="-1"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<form
+  [formGroup]="kardemirService.createKardemirForm"
+  (ngSubmit)="createKardemir()"
+  class="normal-form"
+>
+  <mat-grid-list cols="2">
+    <mat-grid-tile>
+      <div class="controls-container">
+        <input type="hidden" formControlName="id" />
+        <mat-form-field
+          ><input matInput formControlName="active" placeholder="Active*" />
+          <mat-error
+            *ngIf="kardemirService.createKardemirForm.controls['active'].errors?.required"
+            >The field is required</mat-error
+          >
+          <mat-error
+            *ngIf="kardemirService.createKardemirForm.controls['active'].errors?.maxlength" 
+            >Please enter 1 or 0</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field
+          ><input
+            formControlName="kardemir1"
+            matInput
+            placeholder="Kardemir1*"
+          /><mat-error>The field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field
+          ><input
+            formControlName="kardemir2"
+            matInput
+            placeholder="Kardemir2"
+          />
+        </mat-form-field>
+        <mat-form-field
+          ><input formControlName="kardemir3" matInput placeholder="Kardemir3"
+        /></mat-form-field>
+        <mat-form-field
+          ><input
+            formControlName="customerId"
+            matInput
+            placeholder="Customer Id"
+          />
+        </mat-form-field>
+        <mat-form-field
+          ><input formControlName="dop" matInput placeholder="Dop"
+        /></mat-form-field>
+        <mat-form-field
+          ><input formControlName="heatNo" matInput placeholder="Heat No"
+        /></mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controls-container">
+        <mat-form-field
+          ><input formControlName="labelNo" matInput placeholder="Label No"
+        /></mat-form-field>
+        <mat-form-field
+          ><input formControlName="length" matInput placeholder="Length"
+        /></mat-form-field>
+        <mat-form-field
+          ><input formControlName="product" matInput placeholder="Product"
+        /></mat-form-field>
+        <mat-form-field
+          ><input formControlName="quality" matInput placeholder="Quality"
+        /></mat-form-field>
+        <mat-form-field
+          ><input formControlName="quantity" matInput placeholder="Quantity"
+        /></mat-form-field>
+        <mat-form-field
+          ><input formControlName="weight" matInput placeholder="Weight"
+        /></mat-form-field>
+
+        <div class="button-row">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="kardemirService.createKardemirForm.invalid"
+            (click)="createKardemir()"
+          >
+            Submit
+          </button>
+          <button mat-raised-button color="warn" (click)="onClear()">
+            Clear
+          </button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
